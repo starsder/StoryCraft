@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "storycraft"
+version = "0.1.0"
+description = "StoryCraft 是一个用于小说生成的 AI Agent。"
+requires-python = ">=3.10"
+readme = "README.md"
+license = { text = "MIT" }
+
+# 最小依赖原则：运行时仅依赖 LangGraph
+# 后续新增依赖必须有明确理由，并记录在本仓库的依赖说明文档中
+dependencies = [
+    "langgraph",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+    "mypy",
+]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "W", "UP"]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
